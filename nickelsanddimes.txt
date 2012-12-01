@@ -1,0 +1,62 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <math.h>
+
+#define QUARTER 25
+#define DIME 10
+#define NICKEL 5
+#define PENNY 1
+
+int main(void)
+{
+    /* counter to track coins*/
+    
+    int coin_counter = 0;
+   
+    /* get money to make change for*/
+    float f = 0;
+    do
+    {
+        printf("How much change is owed? ");
+        f = GetFloat();
+    } while (f <= 0);
+   
+    /* convert money to cents*/
+    
+    int i = 0;
+    i = round(f * 100);
+   
+    /*while (more than a quarter left):*/
+    while (i >= QUARTER)
+    {    
+        /* subtract quarter*/
+        i -= QUARTER;
+
+        /*increment coins used*/
+        coin_counter++;
+    }
+   
+    /* while (more than a dime left):*/
+    while (i >= DIME)
+    {    
+        i -= DIME;     
+        coin_counter++;
+    }  
+   
+    /* more than a nickel left:*/
+    while (i >= NICKEL)
+    {         
+        i -= NICKEL;    
+        coin_counter++;
+    }
+   
+    /* more than a penny left:*/
+    while (i >= PENNY)
+    {
+        i -= PENNY;
+        coin_counter++;
+    }
+
+    /*output coins used*/
+    printf("%d\n", coin_counter);
+}
